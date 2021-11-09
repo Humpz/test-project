@@ -30,7 +30,7 @@
                     <button type="button" class="mt-1 px-4 py-1 bg-red-600 text-white rounded font-light hover:bg-red-700" @click="showCommentForm = false">Cancel</button>
                 </div>
                 <p v-else @click="showCommentForm = true" class="text-blue-500 cursor-pointer">Write Comment</p>
-                <div v-if="comments">
+                <div v-if="comments && comments.length">
                     <p class="pb-1 my-1">Comments:</p>
                     <div v-for="comment in comments" :key="comment.id">
                         <div>
@@ -97,6 +97,7 @@
                         this.form.name = null;
                         this.form.comment = null;
                         this.showCommentForm = false;
+                        this.getComments()
                     })
                     .catch((error) => {
 

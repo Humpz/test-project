@@ -13,8 +13,6 @@ class CommentController extends Controller
 {
     public function index()
     {
-//        $comments = Comment::where('post_id',1)->orderBy('created_at', 'desc')->get();
-//        return CommentResource::collection($comments)->flatten();
         return CommentResource::collection(Comment::whereNull('parent_id')->with('replies.replies')->orderBy('created_at', 'desc')->get())->flatten();
     }
 
